@@ -15,8 +15,14 @@ import java.util.Arrays;
 "-7" --> -7
 */
 public class ConvertStringToNumber {
+    static String exception = "Ошибка, вводить только цифры !!!";
+
     public static int stringToNumber(String str) {
-        return Integer.parseInt(str);
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(exception);
+        }
     }
 
     public static void main(String[] args) {
@@ -24,5 +30,6 @@ public class ConvertStringToNumber {
         System.out.println(stringToNumber("605"));
         System.out.println(stringToNumber("1405"));
         System.out.println(stringToNumber("-7"));
+        System.out.println(stringToNumber("a"));
     }
 }
