@@ -6,6 +6,24 @@ Grasshopper - Терминальная игровая боевая функци�
 Здоровье не может быть меньше 0 .
 */
 
+public class GrasshopperTerminalGameCombatFunction {
+
+    public static int combat(int health, int damage) {
+        int result = health - damage;
+        if (health > 0 && damage < health) {
+            return result;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(combat(10, 5));
+        System.out.println(combat(5, 10));
+        System.out.println(combat(-10, 5));
+    }
+}
+
 /*
 Альтернативное:
 
@@ -40,20 +58,3 @@ Math.max(X, 0) — выбирает большее значение между:
 
 Если health - damage <= 0 → возвращается 0 (персонаж "умер", здоровье не может быть отрицательным).
 */
-public class GrasshopperTerminalGameCombatFunction {
-
-    public static int combat(int health, int damage) {
-        int result = health - damage;
-        if (health > 0 && damage < health) {
-            return result;
-        } else {
-            return 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(combat(10, 5));
-        System.out.println(combat(5, 10));
-        System.out.println(combat(-10, 5));
-    }
-}
