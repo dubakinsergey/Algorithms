@@ -32,3 +32,32 @@ public class RemoveFirstAndLastCharacter {
         System.out.println("Результат: " + result);
     }
 }
+
+/*
+
+  public static String remove(String str) {
+        return str.substring(1, str.length() - 1);
+    }
+
+Метод substring() - это встроенный метод класса String, который возвращает часть строки.
+
+Индексация:
+-Начинается с 0
+-Первый аргумент - включительно
+-Второй аргумент - исключительно
+
+Удаление первого символа:
+String original = "Hello";
+String result = original.substring(1);
+// result = "ello"
+
+Удаление последнего символа:
+String original = "Hello";
+String result = original.substring(0, original.length() - 1);
+// result = "Hell"
+
+Удаление первого и последнего символа
+String original = "Hello";
+String result = original.substring(1, original.length() - 1);
+// result = "ell"
+*/
