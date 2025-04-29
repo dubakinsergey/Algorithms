@@ -51,3 +51,19 @@ String lettersOnly = str.replaceAll("[0-9]", "");  // "HelloWorld" (удаляе
 
 Если нужно просто заменить подстроку без regex, лучше использовать replace(), так как он работает быстрее.
 */
+
+/*
+    static String removeExclamationMarks(String s) {
+
+        char[] arr = s.toCharArray();
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != '!') {
+                builder.append(arr[i]);
+            }
+        }
+
+        return builder.toString();
+    }
+*/
