@@ -1,3 +1,5 @@
+package eight_and_seven_kyu;
+
 /*
 Противоположное число
 
@@ -27,9 +29,7 @@ public class OppositeNumber {
 }
 
 /*
-
     public static int opposite(int number) {
         return 13333 - number - 13332 - 1;
     }
-
 */

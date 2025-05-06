@@ -1,7 +1,9 @@
+package eight_and_seven_kyu;
+
 /*
 Удалить восклицательные знаки
 
-Напишите функцию RemoveExclamationMarks,которая удаляет все восклицательные знаки из заданной строки.
+Напишите функцию eight_and_seven_kyu.RemoveExclamationMarks,которая удаляет все восклицательные знаки из заданной строки.
 */
 
 public class RemoveExclamationMarks {
@@ -36,7 +38,6 @@ String result3 = text.replace("pear", "melon");  // "apple banana apple" (без
 Регистр имеет значение: replace("a", "b") не заменит "A".
 
 Если подстрока для замены не найдена, возвращается исходная строка.
-
 
 
 

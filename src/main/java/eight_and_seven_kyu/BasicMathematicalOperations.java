@@ -1,3 +1,5 @@
+package eight_and_seven_kyu;
+
 /*
 Базовые математические операции
 

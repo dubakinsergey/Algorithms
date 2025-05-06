@@ -1,3 +1,5 @@
+package eight_and_seven_kyu;
+
 /*
 Это четно?
 
@@ -27,7 +29,6 @@ public class IsItEven {
         return n % 2 == 0;
     }
 */
-
 
 /*
    public boolean isEven(double n) {

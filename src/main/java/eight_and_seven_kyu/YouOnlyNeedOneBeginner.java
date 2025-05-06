@@ -1,3 +1,5 @@
+package eight_and_seven_kyu;
+
 /*
 Вам нужен только один - Новичок
 
@@ -33,13 +35,11 @@ public class YouOnlyNeedOneBeginner {
     }
 }
 
-/*public class Solution {
-
+/*
     public static boolean check(Object[] a, Object x) {
         for (int i = 0; i < a.length; i++)
             if (a[i] == x)
                 return true;
         return false;
     }
-
-}*/
+*/

@@ -1,3 +1,5 @@
+package eight_and_seven_kyu;
+
 /*
 Удалить первый и последний символ
 
@@ -34,7 +36,6 @@ public class RemoveFirstAndLastCharacter {
 }
 
 /*
-
   public static String remove(String str) {
         return str.substring(1, str.length() - 1);
     }
