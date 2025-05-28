@@ -48,3 +48,28 @@ public class FindSmallestIntegerArray {
 
 Этот подход гарантирует, что мы найдем наименьший элемент в массиве за линейное время O(n), где n — количество элементов в массиве.
 */
+
+/*
+public static int findSmallestInt(int[] args) {
+        return IntStream.of(args).min().getAsInt();
+  }
+
+Подробное объяснение:
+1 IntStream.of(args):
+IntStream — это специальный поток (Stream) для примитивных int, который предоставляет удобные методы для работы с числами.
+IntStream.of(args) создаёт поток из массива args.
+Пример:
+int[] numbers = {34, -345, -1, 100};
+IntStream stream = IntStream.of(numbers); // Создаёт поток: 34, -345, -1, 100
+
+2 .min()
+Возвращает OptionalInt — контейнер, который может содержать (или не содержать) минимальное значение.
+Если массив пустой, метод .min() вернёт OptionalInt.empty().
+Пример:
+OptionalInt minOptional = IntStream.of(34, -345, -1, 100).min();  // minOptional содержит -345
+
+3 .getAsInt()
+Если поток не пустой, метод .getAsInt() возвращает минимальное значение.
+Если поток пустой (например, IntStream.of().min()), выбросит NoSuchElementException.
+В условии задачи сказано, что массив не пустой, поэтому можно смело использовать .getAsInt().
+*/
