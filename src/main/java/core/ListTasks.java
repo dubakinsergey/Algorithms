@@ -6,6 +6,12 @@ import java.util.List;
 
 public class ListTasks {
 
+
+// Задача 11: Заменить элемент по индексу 2 на "Cranberry"
+// Задача 12: Удалить элемент "Banana" (первое вхождение)
+// Задача 13: Удалить элемент по индексу 0
+// Задача 14: Очистить список и проверить, что он пуст
+
     // Задача 1: Проверить, что список не пустой
     public static boolean checkListIsEmpty1(List<String> list) {
         return list.isEmpty();
@@ -47,6 +53,18 @@ public class ListTasks {
         return list.lastIndexOf(string);
     }
 
+    // Задача 9: Добавить элемент "Elderberry" в конец списка
+    public static List<String> addElementToTheEndList9(String string, List<String> list) {
+        list.add(string);
+        return list;
+    }
+
+    // Задача 10: Вставить элемент "Apricot" на позицию с индексом 1
+    public static List<String> addElementToFirstIndex10(String string, List<String> list) {
+        list.add(1, string);
+        return list;
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -56,6 +74,8 @@ public class ListTasks {
         list.add("Banana");
         list.add("Date");
 
+        list.forEach(System.out::println);
+
         System.out.println(checkListIsEmpty1(list));
         System.out.println(checkListIsSize2(4, list));
         System.out.println(checkContainsString3("Cherry", list));
@@ -64,5 +84,7 @@ public class ListTasks {
         System.out.println(checkLastElement6("Date", list));
         System.out.println(findIndexOfFirstOccurrence7("Banana", list));
         System.out.println(findIndexOfLastOccurrence8("Banana", list));
+        System.out.println(addElementToTheEndList9("Elderberry", list));
+        System.out.println(addElementToFirstIndex10("Apricot", list));
     }
 }
