@@ -6,12 +6,6 @@ import java.util.List;
 
 public class ListTasks {
 
-
-// Задача 11: Заменить элемент по индексу 2 на "Cranberry"
-// Задача 12: Удалить элемент "Banana" (первое вхождение)
-// Задача 13: Удалить элемент по индексу 0
-// Задача 14: Очистить список и проверить, что он пуст
-
     // Задача 1: Проверить, что список не пустой
     public static boolean checkListIsEmpty1(List<String> list) {
         return list.isEmpty();
@@ -61,8 +55,32 @@ public class ListTasks {
 
     // Задача 10: Вставить элемент "Apricot" на позицию с индексом 1
     public static List<String> addElementToFirstIndex10(String string, List<String> list) {
-        list.add(1, string);
+        list.add(1, string); //Элементы с этого индекса и дальше сдвигаются вправо + Размер списка увеличивается на 1
         return list;
+    }
+
+    // Задача 11: Заменить элемент по индексу '{index}' на '{string}'
+    public static List<String> replaceElementToIndex11(int index, String string, List<String> list) {
+        list.set(index, string);
+        return list;
+    }
+
+    // Задача 12: Удалить элемент "Banana" (первое вхождение)
+    public static List<String> deleteElementToFirstOccurrence12(String string, List<String> list) {
+        list.remove(string); //Элементы справа от удаленного сдвигаются влево + Размер списка уменьшается на 1
+        return list;
+    }
+
+    // Задача 13: Удалить элемент по индексу '{index}'
+    public static List<String> deleteElementByIndex12(int index, List<String> list) {
+        list.remove(index);
+        return list;
+    }
+
+    // Задача 14: Очистить список и проверить, что он пуст
+    public static boolean clearListAndCheckIsEmpty(List<String> list) {
+        list.clear();
+        return list.isEmpty();
     }
 
     public static void main(String[] args) {
@@ -75,6 +93,7 @@ public class ListTasks {
         list.add("Date");
 
         list.forEach(System.out::println);
+        System.out.println("------------------------");
 
         System.out.println(checkListIsEmpty1(list));
         System.out.println(checkListIsSize2(4, list));
@@ -86,5 +105,9 @@ public class ListTasks {
         System.out.println(findIndexOfLastOccurrence8("Banana", list));
         System.out.println(addElementToTheEndList9("Elderberry", list));
         System.out.println(addElementToFirstIndex10("Apricot", list));
+        System.out.println(replaceElementToIndex11(2, "Cranberry", list));
+        System.out.println(deleteElementToFirstOccurrence12("Banana", list));
+        System.out.println(deleteElementByIndex12(0, list));
+        System.out.println(clearListAndCheckIsEmpty(list));
     }
 }
