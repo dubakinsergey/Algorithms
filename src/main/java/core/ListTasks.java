@@ -1,9 +1,13 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-
+//Работа с подсписками (sublist)
+//// Задача 15: Создать новый список из элементов с индексами от 1 до 3 (включительно)
+//// Задача 16: Проверить, что этот новый список содержит ["Banana", "Cherry", "Banana"]
+//// Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
 public class ListTasks {
 
     // Задача 1: Проверить, что список не пустой
@@ -83,6 +87,12 @@ public class ListTasks {
         return list.isEmpty();
     }
 
+    // Задача 15: Создать новый список из элементов с индексами от '{fromIndex}' до '{toIndex}' (включительно)
+    public static List<String> getSubListByIndexRange(int fromIndex, int toIndex, List<String> list) {
+        List<String> newSublist = list.subList(fromIndex, toIndex);
+        return newSublist;
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -109,5 +119,6 @@ public class ListTasks {
         System.out.println(deleteElementToFirstOccurrence12("Banana", list));
         System.out.println(deleteElementByIndex12(0, list));
         System.out.println(clearListAndCheckIsEmpty(list));
+        System.out.println(getSubListByIndexRange(1, 4, Arrays.asList("zero", "one", "two", "three", "four", "five", "six")));
     }
 }
