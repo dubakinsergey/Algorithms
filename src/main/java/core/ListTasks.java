@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 //Работа с подсписками (sublist)
-//// Задача 15: Создать новый список из элементов с индексами от 1 до 3 (включительно)
-//// Задача 16: Проверить, что этот новый список содержит ["Banana", "Cherry", "Banana"]
-//// Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
+// Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
 public class ListTasks {
 
     // Задача 1: Проверить, что список не пустой
@@ -76,21 +74,26 @@ public class ListTasks {
     }
 
     // Задача 13: Удалить элемент по индексу '{index}'
-    public static List<String> deleteElementByIndex12(int index, List<String> list) {
+    public static List<String> deleteElementByIndex13(int index, List<String> list) {
         list.remove(index);
         return list;
     }
 
     // Задача 14: Очистить список и проверить, что он пуст
-    public static boolean clearListAndCheckIsEmpty(List<String> list) {
+    public static boolean clearListAndCheckIsEmpty14(List<String> list) {
         list.clear();
         return list.isEmpty();
     }
 
-    // Задача 15: Создать новый список из элементов с индексами от '{fromIndex}' до '{toIndex}' (включительно)
-    public static List<String> getSubListByIndexRange(int fromIndex, int toIndex, List<String> list) {
+    // Задача 15: Создать новый список из элементов с индексами от 1 до 3 (включительно)
+    public static List<String> getSubListByIndexRange15(int fromIndex, int toIndex, List<String> list) {
         List<String> newSublist = list.subList(fromIndex, toIndex);
         return newSublist;
+    }
+
+    // Задача 16: Проверить, что этот новый список содержит ["Banana", "Cherry", "Banana"]
+    public static boolean checkSubListContent16(List<String> list, int fromIndex, int toIndex, List<String> expected) {
+        return list.subList(fromIndex, toIndex).equals(expected);
     }
 
     public static void main(String[] args) {
@@ -104,7 +107,6 @@ public class ListTasks {
 
         list.forEach(System.out::println);
         System.out.println("------------------------");
-
         System.out.println(checkListIsEmpty1(list));
         System.out.println(checkListIsSize2(4, list));
         System.out.println(checkContainsString3("Cherry", list));
@@ -117,8 +119,9 @@ public class ListTasks {
         System.out.println(addElementToFirstIndex10("Apricot", list));
         System.out.println(replaceElementToIndex11(2, "Cranberry", list));
         System.out.println(deleteElementToFirstOccurrence12("Banana", list));
-        System.out.println(deleteElementByIndex12(0, list));
-        System.out.println(clearListAndCheckIsEmpty(list));
-        System.out.println(getSubListByIndexRange(1, 4, Arrays.asList("zero", "one", "two", "three", "four", "five", "six")));
+        System.out.println(deleteElementByIndex13(0, list));
+        System.out.println(clearListAndCheckIsEmpty14(list));
+        System.out.println(getSubListByIndexRange15(1, 4, Arrays.asList("Apple", "Banana", "Cherry", "Banana", "Date")));
+        System.out.println(checkSubListContent16(list, 1, 4, Arrays.asList("Banana", "Cherry", "Banana")));
     }
 }
