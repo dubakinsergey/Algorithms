@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Работа с подсписками (sublist)
-// Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
 public class ListTasks {
 
     // Задача 1: Проверить, что список не пустой
@@ -96,6 +94,14 @@ public class ListTasks {
         return list.subList(fromIndex, toIndex).equals(expected);
     }
 
+    // Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
+    public static List<String> removeSublistByIndexRange17(int fromIndex, int toIndex, List<String> list) {
+        list.subList(fromIndex, toIndex).clear();
+        return list;
+    }
+
+    // Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
+    // Вариант с созданием копии (если нужно сохранить оригинал):
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -123,5 +129,6 @@ public class ListTasks {
         System.out.println(clearListAndCheckIsEmpty14(list));
         System.out.println(getSubListByIndexRange15(1, 4, Arrays.asList("Apple", "Banana", "Cherry", "Banana", "Date")));
         System.out.println(checkSubListContent16(list, 1, 4, Arrays.asList("Banana", "Cherry", "Banana")));
+        System.out.println(removeSublistByIndexRange17(1, 4, list));
     }
 }
