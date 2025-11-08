@@ -102,6 +102,18 @@ public class ListTasks {
 
     // Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
     // Вариант с созданием копии (если нужно сохранить оригинал):
+    public static List<String> removeSublistByIndexRangeSaveOriginal17(int fromIndex, int toIndex, List<String> originalList) {
+        List<String> copy = new ArrayList<>(originalList);
+        List<String> sublist = copy.subList(fromIndex, toIndex);
+        sublist.clear();
+        return copy;
+
+        // Важное замечание о subList():
+        // Метод subList() возвращает вид на оригинальный список,
+        // поэтому любые изменения в подсписке отражаются на оригинальном списке
+        // (в данном случае - на copy).
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -130,5 +142,6 @@ public class ListTasks {
         System.out.println(getSubListByIndexRange15(1, 4, Arrays.asList("Apple", "Banana", "Cherry", "Banana", "Date")));
         System.out.println(checkSubListContent16(list, 1, 4, Arrays.asList("Banana", "Cherry", "Banana")));
         System.out.println(removeSublistByIndexRange17(1, 4, list));
+        System.out.println(removeSublistByIndexRangeSaveOriginal17(1, 4, list));
     }
 }
