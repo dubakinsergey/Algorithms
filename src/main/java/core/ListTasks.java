@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Задача 19: Напечатать все элементы, которые начинаются с буквы 'B'
+// Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
+// Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
+// Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
 public class ListTasks {
 
     // Задача 1: Проверить, что список не пустой
@@ -114,6 +118,27 @@ public class ListTasks {
         // (в данном случае - на copy).
     }
 
+    // Задача 18: Напечатать все элементы списка в консоль (через for-each)
+    public static List<String> printAndReturnList18(List<String> list) {
+        for (String element : list) {
+            System.out.println(element);
+        }
+        return list;
+    }
+
+    // Задача 18: Напечатать все элементы списка в консоль (через for) с нумерацией (только печать)
+    public static void printAllElements18(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + 1 + ". " + list.get(i)); // i + 1 для отображения нумерации
+        }
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -143,5 +168,7 @@ public class ListTasks {
         System.out.println(checkSubListContent16(list, 1, 4, Arrays.asList("Banana", "Cherry", "Banana")));
         System.out.println(removeSublistByIndexRange17(1, 4, list));
         System.out.println(removeSublistByIndexRangeSaveOriginal17(1, 4, list));
+        System.out.println(printAndReturnList18(list));
+        printAllElements18(list);
     }
 }
