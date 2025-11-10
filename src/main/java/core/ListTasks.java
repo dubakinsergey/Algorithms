@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// Задача 19: Напечатать все элементы, которые начинаются с буквы 'B'
 // Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
 // Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
 // Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
@@ -139,6 +138,19 @@ public class ListTasks {
         }
     }
 
+    // Задача 19: Напечатать все элементы, которые начинаются с буквы 'B'
+    public static void printElementStartWithLetterB19(List<String> list) {
+
+        if (list == null || list.isEmpty()) {      //Проверка на null и пустой список
+            System.out.println("List is empty");
+            return;
+        }
+
+        list.forEach(el -> {
+            if (el != null && el.startsWith("B")) System.out.println(el);
+        });
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -170,5 +182,6 @@ public class ListTasks {
         System.out.println(removeSublistByIndexRangeSaveOriginal17(1, 4, list));
         System.out.println(printAndReturnList18(list));
         printAllElements18(list);
+        printElementStartWithLetterB19(list);
     }
 }
