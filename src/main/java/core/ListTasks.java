@@ -3,6 +3,7 @@ package core;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 // Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
 // Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
@@ -105,16 +106,17 @@ public class ListTasks {
 
     // Задача 17: Удалить элементы с индексами от 1 до 3 из исходного списка
     // Вариант с созданием копии (если нужно сохранить оригинал):
+
+    /*  Важное замечание о subList():
+        Метод subList() возвращает вид на оригинальный список,
+        поэтому любые изменения в подсписке отражаются на оригинальном списке
+        (в данном случае - на copy).
+    */
     public static List<String> removeSublistByIndexRangeSaveOriginal17(int fromIndex, int toIndex, List<String> originalList) {
         List<String> copy = new ArrayList<>(originalList);
         List<String> sublist = copy.subList(fromIndex, toIndex);
         sublist.clear();
         return copy;
-
-        // Важное замечание о subList():
-        // Метод subList() возвращает вид на оригинальный список,
-        // поэтому любые изменения в подсписке отражаются на оригинальном списке
-        // (в данном случае - на copy).
     }
 
     // Задача 18: Напечатать все элементы списка в консоль (через for-each)
@@ -151,9 +153,39 @@ public class ListTasks {
         });
     }
 
+    // Задача 19: Напечатать все элементы, которые начинаются с буквы 'B' через stream
+
+    /*     NPE = NullPointerException (Исключение нулевого указателя)
+           NPE - это ошибка, которая возникает когда ты пытаешься вызвать метод или обратиться к полю у объекта, который равен null.
+
+            Все эти записи работают одинаково:
+
+            1. Method reference (самый короткий)
+           .filter(Objects::nonNull)
+
+            2. Lambda с вызовом метода
+            .filter(element -> Objects.nonNull(element))
+
+            3. Прямая проверка на null
+            .filter(element -> element != null)
+    */
+    public static void printElementStartWithLetterBStream19(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        list.stream()
+                .filter(Objects::nonNull) // Игнорируем null элементы (оставляет только НЕ-null элементы)
+                .filter(element -> element.startsWith("B"))
+                .forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
+        list.add(null);
         list.add("Apple");
         list.add("Banana");
         list.add("Cherry");
@@ -183,5 +215,6 @@ public class ListTasks {
         System.out.println(printAndReturnList18(list));
         printAllElements18(list);
         printElementStartWithLetterB19(list);
+        printElementStartWithLetterBStream19(list);
     }
 }
