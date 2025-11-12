@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-// Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
 // Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
 // Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
 public class ListTasks {
@@ -182,10 +181,28 @@ public class ListTasks {
                 .forEach(System.out::println);
     }
 
+    // Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
+    /*
+     .allMatch() для пустого stream возвращает true
+    */
+    public static boolean allElementsLongerThanThree20(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return false;
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .count() > 3 && // есть хотя бы один не-null элемент
+                list.stream()
+                        .filter(Objects::nonNull)
+                        .allMatch(el -> el.length() > 3);
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
-        list.add(null);
         list.add("Apple");
         list.add("Banana");
         list.add("Cherry");
@@ -216,5 +233,6 @@ public class ListTasks {
         printAllElements18(list);
         printElementStartWithLetterB19(list);
         printElementStartWithLetterBStream19(list);
+        System.out.println(allElementsLongerThanThree20(list));
     }
 }
