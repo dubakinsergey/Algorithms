@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-// Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
 // Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
 public class ListTasks {
 
@@ -200,6 +199,22 @@ public class ListTasks {
                         .allMatch(el -> el.length() > 3);
     }
 
+    // Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
+    /*
+      .anyMatch() останавливается при нахождении первого подходящего элемента
+    */
+    public static boolean oneElementHasLength5Characters21(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return false;
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .anyMatch(el -> el.length() == 5);
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -234,5 +249,6 @@ public class ListTasks {
         printElementStartWithLetterB19(list);
         printElementStartWithLetterBStream19(list);
         System.out.println(allElementsLongerThanThree20(list));
+        System.out.println(oneElementHasLength5Characters21(list));
     }
 }
