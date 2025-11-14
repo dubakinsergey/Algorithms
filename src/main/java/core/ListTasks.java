@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-// Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
 public class ListTasks {
 
     // Задача 1: Проверить, что список не пустой
@@ -215,6 +214,20 @@ public class ListTasks {
                 .anyMatch(el -> el.length() == 5);
     }
 
+    // Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
+    public static String firstElementStartsWithC22(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return "Not Found";
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> el.startsWith("C"))
+                .findFirst()                  // .findFirst() - находим первый подходящий элемент
+                .orElse("Not Found");   // .orElse("Not Found") - возвращаем элемент или "Not Found" если не найдено
+    }
+
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>();
@@ -250,5 +263,6 @@ public class ListTasks {
         printElementStartWithLetterBStream19(list);
         System.out.println(allElementsLongerThanThree20(list));
         System.out.println(oneElementHasLength5Characters21(list));
+        System.out.println(firstElementStartsWithC22(list));
     }
 }
