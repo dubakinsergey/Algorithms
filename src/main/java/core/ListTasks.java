@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ListTasks {
 
@@ -173,10 +174,8 @@ public class ListTasks {
             return;
         }
 
-        list.stream()
-                .filter(Objects::nonNull) // Игнорируем null элементы (оставляет только НЕ-null элементы)
-                .filter(element -> element.startsWith("B"))
-                .forEach(System.out::println);
+        list.stream().filter(Objects::nonNull) // Игнорируем null элементы (оставляет только НЕ-null элементы)
+                .filter(element -> element.startsWith("B")).forEach(System.out::println);
     }
 
     // Задача 20: Проверить, все ли элементы имеют длину больше 3 символов
@@ -190,12 +189,8 @@ public class ListTasks {
             return false;
         }
 
-        return list.stream()
-                .filter(Objects::nonNull)
-                .count() > 3 && // есть хотя бы один не-null элемент
-                list.stream()
-                        .filter(Objects::nonNull)
-                        .allMatch(el -> el.length() > 3);
+        return list.stream().filter(Objects::nonNull).count() > 3 && // есть хотя бы один не-null элемент
+                list.stream().filter(Objects::nonNull).allMatch(el -> el.length() > 3);
     }
 
     // Задача 21: Проверить, что хотя бы один элемент имеет длину 5 символов
@@ -209,9 +204,7 @@ public class ListTasks {
             return false;
         }
 
-        return list.stream()
-                .filter(Objects::nonNull)
-                .anyMatch(el -> el.length() == 5);
+        return list.stream().filter(Objects::nonNull).anyMatch(el -> el.length() == 5);
     }
 
     // Задача 22: Найти первый элемент, который начинается на "C", или вернуть "Not Found"
@@ -221,14 +214,31 @@ public class ListTasks {
             return "Not Found";
         }
 
-        return list.stream()
-                .filter(Objects::nonNull)
-                .filter(el -> el.startsWith("C"))
-                .findFirst()                  // .findFirst() - находим первый подходящий элемент
+        return list.stream().filter(Objects::nonNull).filter(el -> el.startsWith("C")).findFirst()                  // .findFirst() - находим первый подходящий элемент
                 .orElse("Not Found");   // .orElse("Not Found") - возвращаем элемент или "Not Found" если не найдено
     }
 
+    // Задача 23: Преобразовать List<String> в List<Integer>
+    public static List<Integer> convertStringListToIntegerList23(List<String> stringNumbers) {
+
+        if (stringNumbers == null || stringNumbers.isEmpty()) {
+            System.out.println("List is invalid");
+            return new ArrayList<>(); // возвращаем пустой список вместо null
+        }
+
+        List<Integer> result = stringNumbers.stream()
+                .map(String::trim)
+                .filter(str -> !str.isEmpty())              // оставить не пустые
+                .filter(str -> str.matches("-?\\d+")) // проверяем, что строка содержит только цифры
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
     public static void main(String[] args) {
+
+        List<String> stringNumbers = Arrays.asList("1", "2", "3", "4", "5");
 
         List<String> list = new ArrayList<>();
         list.add("Apple");
@@ -264,5 +274,8 @@ public class ListTasks {
         System.out.println(allElementsLongerThanThree20(list));
         System.out.println(oneElementHasLength5Characters21(list));
         System.out.println(firstElementStartsWithC22(list));
+        System.out.println(convertStringListToIntegerList23(stringNumbers));
     }
 }
+// Задача 24: Создать новый список, где к каждому элементу добавлен суффикс "_fruit"
+// Задача 25: Преобразовать все элементы списка в верхний регистр
