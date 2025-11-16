@@ -214,8 +214,11 @@ public class ListTasks {
             return "Not Found";
         }
 
-        return list.stream().filter(Objects::nonNull).filter(el -> el.startsWith("C")).findFirst()                  // .findFirst() - находим первый подходящий элемент
-                .orElse("Not Found");   // .orElse("Not Found") - возвращаем элемент или "Not Found" если не найдено
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> el.startsWith("C"))
+                .findFirst()                         // .findFirst() - находим первый подходящий элемент
+                .orElse("Not Found");          // .orElse("Not Found") - возвращаем элемент или "Not Found" если не найдено
     }
 
     // Задача 23: Преобразовать List<String> в List<Integer>
@@ -223,7 +226,7 @@ public class ListTasks {
 
         if (stringNumbers == null || stringNumbers.isEmpty()) {
             System.out.println("List is invalid");
-            return new ArrayList<>(); // возвращаем пустой список вместо null
+            return new ArrayList<>();                      // возвращаем пустой список вместо null
         }
 
         List<Integer> result = stringNumbers.stream()
@@ -234,6 +237,49 @@ public class ListTasks {
                 .collect(Collectors.toList());
 
         return result;
+    }
+
+    // Задача 24: Создать новый (изменяемый) список, где к каждому элементу добавлен суффикс "_fruit"
+    /*
+    По умолчанию всегда возвращай изменяемые коллекции, если нет явной причины делать их неизменяемыми.
+
+     Гибкость для вызывающего кода:
+     List<String> fruits = eachElementAddSuffix_fruit_24(originalList);
+
+     // Можно добавить ещё элементы
+     fruits.add("Additional_fruit");
+
+     // Можно удалить элементы
+     fruits.remove(0);
+
+     // Можно модифицировать
+     fruits.set(0, "Modified_fruit");
+     */
+    public static List<String> eachElementAddSuffix_fruit_24(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return new ArrayList<>();                // изменяемый
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .map(el -> el.concat("_fruit"))  // добавляем суффикс
+                .collect(Collectors.toList());       // изменяемый
+    }
+
+    // Задача 24: Создать новый (НЕИЗМЕНЯЕМЫЙ) список, где к каждому элементу добавлен суффикс "_fruit" -
+    public static List<String> eachElementAddSuffix_fruit_immutable_24(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            System.out.println("List is empty");
+            return List.of();                        // неизменяемый список
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .map(el -> el.concat("_fruit"))  // добавляем суффикс
+                .toList();                           // неизменяемый список
     }
 
     public static void main(String[] args) {
@@ -275,7 +321,8 @@ public class ListTasks {
         System.out.println(oneElementHasLength5Characters21(list));
         System.out.println(firstElementStartsWithC22(list));
         System.out.println(convertStringListToIntegerList23(stringNumbers));
+        System.out.println(eachElementAddSuffix_fruit_immutable_24(list));
+        System.out.println(eachElementAddSuffix_fruit_24(list));
     }
 }
-// Задача 24: Создать новый список, где к каждому элементу добавлен суффикс "_fruit"
 // Задача 25: Преобразовать все элементы списка в верхний регистр
