@@ -21,6 +21,19 @@ public class ListTasks_StreamApi {
                 .collect(Collectors.toList());
     }
 
+    //     Задача 2: Преобразовать все элементы в верхний регистр
+    public static List<String> elementToUpperCase_2(List<String> list) {
+
+        if (list == null) {
+            return new ArrayList<>(); // защита от null списка
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .map(el -> el.toUpperCase())
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -33,13 +46,13 @@ public class ListTasks_StreamApi {
                 "programming", "collection", "framework", "development"
         );
         System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
+        System.out.println(elementToUpperCase_2(list));
     }
 }
 
 /*
 📋 Базовые операции: фильтрация и преобразование
 
-        Задача 2: Преобразовать все элементы в верхний регистр
         Задача 3: Найти первый элемент, который начинается на "b", или вернуть "not found"
         Задача 4: Создать список длин каждого слова
 */
