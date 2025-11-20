@@ -48,6 +48,19 @@ public class ListTasks_StreamApi {
                 .orElse("not found");
     }
 
+    //    Задача 4: Создать список длин каждого слова
+    public static List<Integer> createListOfWordLengths_4(List<String> list) {
+
+        if (list == null) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .map(String::length) //  .map(el -> el.length())
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -59,13 +72,10 @@ public class ListTasks_StreamApi {
                 "test element", "java", "stream", "api", "exercise",
                 "programming", "collection", "framework", "development"
         );
+
         System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
         System.out.println(elementToUpperCase_2(list));
         System.out.println(firstElementStartsWithB_3(list));
+        System.out.println(createListOfWordLengths_4(list));
     }
 }
-
-/*
-📋 Базовые операции: фильтрация и преобразование
-        Задача 4: Создать список длин каждого слова
-*/
