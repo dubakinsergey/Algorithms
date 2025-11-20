@@ -34,6 +34,20 @@ public class ListTasks_StreamApi {
                 .collect(Collectors.toList());
     }
 
+    //    Задача 3: Найти первый элемент, который начинается на "b", или вернуть "not found"
+    public static String firstElementStartsWithB_3(List<String> list) {
+
+        if (list == null) {
+            return "not found";
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> el.toLowerCase().startsWith("b"))
+                .findFirst()
+                .orElse("not found");
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -47,12 +61,11 @@ public class ListTasks_StreamApi {
         );
         System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
         System.out.println(elementToUpperCase_2(list));
+        System.out.println(firstElementStartsWithB_3(list));
     }
 }
 
 /*
 📋 Базовые операции: фильтрация и преобразование
-
-        Задача 3: Найти первый элемент, который начинается на "b", или вернуть "not found"
         Задача 4: Создать список длин каждого слова
 */
