@@ -61,6 +61,58 @@ public class ListTasks_StreamApi {
                 .collect(Collectors.toList());
     }
 
+    // Задача 5: Проверить, что все элементы начинаются с буквы в нижнем регистре
+    // Нужно проверить, что строка не начинается с заглавной буквы (но допускаются цифры, пробелы)
+    /*
+    .allMatch(predicate)
+Проверяет, что ВСЕ элементы удовлетворяют условию
+Возвращает true только если ВСЕ элементы = true
+Возвращает false если ХОТЯ БЫ ОДИН элемент = false
+    */
+    public static boolean elementsBeginWithLowercaseLetter_5(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return false;
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> !el.isEmpty())
+                .allMatch(el -> el.charAt(0) == el.toLowerCase().charAt(0));
+    }
+
+    // Задача 5: Проверить, что все элементы начинаются с буквы в нижнем регистре
+    // Нужно проверить, что строка начинается именно с буквы в нижнем регистре (строгая проверка)
+    /*
+    Character - утилитный класс для работы с одиночными символами (char)
+
+    Проверки типа символов:
+Character.isLetter('A')      // true - буква ли?
+Character.isDigit('5')       // true - цифра ли?
+Character.isWhitespace(' ')  // true - пробельный символ?
+Character.isLowerCase('a')   // true - нижний регистр?
+Character.isUpperCase('A')   // true - верхний регистр?
+Character.isLetterOrDigit('a') // true - буква или цифра?
+
+    Преобразование регистра:
+Character.toLowerCase('A')   // 'a'
+Character.toUpperCase('a')   // 'A'
+
+    Сравнение:
+Character.compare('a', 'b')  // -1 (сравнение двух char)
+    */
+    public static boolean elementsBeginWithLowercaseLetter_Second_5(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return false;
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> !el.isEmpty())
+                .allMatch(el -> Character.isLowerCase(el.charAt(0))); // проверяет именно буквы в нижнем регистре
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -77,5 +129,12 @@ public class ListTasks_StreamApi {
         System.out.println(elementToUpperCase_2(list));
         System.out.println(firstElementStartsWithB_3(list));
         System.out.println(createListOfWordLengths_4(list));
+        System.out.println(elementsBeginWithLowercaseLetter_5(list));
+        System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
     }
 }
+
+/* Продвинутая фильтрация и поиск
+Задача 6: Проверить, что ни один элемент не содержит пробелов
+Задача 7: Найти любой элемент, длина которого равна 6
+*/
