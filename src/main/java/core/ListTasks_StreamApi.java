@@ -113,6 +113,31 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
                 .allMatch(el -> Character.isLowerCase(el.charAt(0))); // проверяет именно буквы в нижнем регистре
     }
 
+    //    Задача 6: Проверить, что ни один элемент не содержит пробелов
+    /*
+    .noneMatch()
+    Проверяет, что НИ ОДИН элемент в stream не удовлетворяет условию.
+
+          Логика работы:
+     Возвращает true  - если ВСЕ элементы = false
+     Возвращает false - если ХОТЯ БЫ ОДИН элемент = true
+
+          Проверка что ни один элемент НЕ начинается с 'A' И НЕ заканчивается на 'Z'
+     .noneMatch(s -> s.startsWith("A") && s.endsWith("Z"))
+    */
+    public static boolean noneElementsContainSpaces_6(List<String> list) {
+
+        if (list == null) {
+            System.out.println("List is null");
+            return true;
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> !el.isEmpty()) // пустые строки игнорируются
+                .noneMatch(el -> el.contains(" ")); // true если НИ ОДИН элемент не содержит пробелов
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -131,10 +156,11 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
         System.out.println(createListOfWordLengths_4(list));
         System.out.println(elementsBeginWithLowercaseLetter_5(list));
         System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
+        System.out.println(noneElementsContainSpaces_6(list));
     }
 }
 
 /* Продвинутая фильтрация и поиск
-Задача 6: Проверить, что ни один элемент не содержит пробелов
+
 Задача 7: Найти любой элемент, длина которого равна 6
 */
