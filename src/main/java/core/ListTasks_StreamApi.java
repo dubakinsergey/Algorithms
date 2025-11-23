@@ -138,6 +138,29 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
                 .noneMatch(el -> el.contains(" ")); // true если НИ ОДИН элемент не содержит пробелов
     }
 
+    //    Задача 7: Найти любой элемент, длина которого равна 6
+    /*
+    Консистентность (Consistency) - это единообразие и предсказуемость в коде.
+    Консистентность = делать одинаковые вещи одинаково, чтобы код был предсказуемым и простым в использовании.
+
+    Почему консистентность важна:
+    Легче понимать код
+    Легче поддерживать и изменять
+    Меньше багов из-за неожиданного поведения
+    */
+    public static String anyElementWhoseLengthSix_7(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return "not found";
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> el.length() == 6)
+                .findAny() // находит ЛЮБОЙ подходящий элемент (не обязательно первый)
+                .orElse("not found");
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -157,10 +180,6 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
         System.out.println(elementsBeginWithLowercaseLetter_5(list));
         System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
         System.out.println(noneElementsContainSpaces_6(list));
+        System.out.println(anyElementWhoseLengthSix_7(list));
     }
 }
-
-/* Продвинутая фильтрация и поиск
-
-Задача 7: Найти любой элемент, длина которого равна 6
-*/
