@@ -161,6 +161,40 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
                 .orElse("not found");
     }
 
+    //    Задача 8: Отсортировать список по алфавиту
+/*
+         Производительность:
+    .sorted() создает новый отсортированный stream
+    Исходный список не изменяется
+
+         Дополненительно:
+.sorted(String.CASE_INSENSITIVE_ORDER) //Сортировка без учета регистра:
+.sorted(Comparator.reverseOrder())     //Сортировка в обратном порядке:
+.sorted()                             // Сортировка в естественном порядке (алфавитном для строк)
+       Естественный порядок (с учетом регистра):
+"123"       // цифры first
+"Apple"     // заглавные буквы
+"Zoo"       // заглавные буквы
+"apple"     // строчные буквы
+"zoo"       // строчные буквы
+
+       Без учета регистра:
+"apple", "Apple", "banana", "Banana"
+*/
+    public static List<String> alphabeticalList_8(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .sorted()        // сортировка в естественном порядке (алфавитном для строк)
+                .collect(Collectors.toList());
+    }
+
+//    Задача 8: Сортировка в обратном порядке (дополнительно)
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -181,5 +215,17 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
         System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
         System.out.println(noneElementsContainSpaces_6(list));
         System.out.println(anyElementWhoseLengthSix_7(list));
+        System.out.println(alphabeticalList_8(null));
     }
 }
+/*
+Сортировка и агрегирующие операции
+
+Задача 9: Отсортировать список по длине строки
+
+Задача 10: Найти самый длинный элемент
+
+Задача 11: Найти общее количество символов во всех строках
+
+Задача 12: Объединить все элементы в одну строку через запятую
+*/
