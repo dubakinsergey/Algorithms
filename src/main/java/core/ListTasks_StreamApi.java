@@ -1,9 +1,6 @@
 package core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ListTasks_StreamApi {
@@ -193,7 +190,96 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
                 .collect(Collectors.toList());
     }
 
-//    Задача 8: Сортировка в обратном порядке (дополнительно)
+    //    Задача 8: Сортировка в обратном порядке (дополнительно)
+    /*
+    Comparator - мощный интерфейс для гибкой и сложной сортировки объектов
+    1. Создание компараторов:
+Comparator.naturalOrder()             // естественный порядок
+Comparator.reverseOrder()             // обратный порядок
+Comparator.comparing(String::length)  // по длине строки
+Comparator.comparing(Person::getName) // по полю объекта
+Comparator.comparingInt(String::length) // примитивная версия
+
+2. Цепочка компараторов:
+// Сортировка по нескольким полям
+Comparator.comparing(Person::getLastName)
+          .thenComparing(Person::getFirstName)
+          .thenComparingInt(Person::getAge)
+
+3. Обратные компараторы:
+Comparator.comparing(String::length).reversed() // обратный порядок
+
+4. Null-safe компараторы:
+Comparator.nullsFirst(Comparator.naturalOrder()) // null в начало
+Comparator.nullsLast(Comparator.naturalOrder())  // null в конец
+
+                 Самые полезные на практике:
+   Для строк:
+
+Comparator.naturalOrder()          // алфавитный порядок
+Comparator.reverseOrder()          // обратный алфавитный
+String.CASE_INSENSITIVE_ORDER     // без учета регистра
+Comparator.comparing(String::length) // по длине
+
+   Для объектов:
+
+Comparator.comparing(Product::getPrice) // по цене
+Comparator.comparing(Product::getName).reversed() // по имени обратно
+Comparator.comparing(Product::getCategory)
+          .thenComparing(Product::getPrice) // по категории, потом по цене
+
+   в Stream API:
+
+// По алфавиту
+list.stream().sorted(Comparator.naturalOrder())
+
+// По длине строки
+list.stream().sorted(Comparator.comparing(String::length))
+
+// Без учета регистра
+list.stream().sorted(String.CASE_INSENSITIVE_ORDER)
+
+// По длине, потом по алфавиту
+list.stream().sorted(Comparator.comparing(String::length)
+                      .thenComparing(Comparator.naturalOrder()))
+
+  С null элементами:
+
+// Null в начало
+list.stream().sorted(Comparator.nullsFirst(Comparator.naturalOrder()))
+
+// Null в конец
+list.stream().sorted(Comparator.nullsLast(Comparator.naturalOrder()))
+
+           Практические примеры:
+
+// Сортировка по длине строки
+list.stream()
+    .sorted(Comparator.comparing(String::length))
+    .collect(Collectors.toList())
+
+// Сортировка по нескольким критериям
+list.stream()
+    .sorted(Comparator.comparing(String::length)
+                      .thenComparing(Comparator.naturalOrder()))
+    .collect(Collectors.toList())
+
+// Обратная сортировка с null в конце
+list.stream()
+    .sorted(Comparator.nullsLast(Comparator.reverseOrder()))
+    .collect(Collectors.toList())
+*/
+    public static List<String> sortReverseAlphabetically_8(List<String> list) {
+
+        if (list == null) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+    }
 
     public static void main(String[] args) {
 
@@ -215,7 +301,8 @@ Character.compare('a', 'b')  // -1 (сравнение двух char)
         System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
         System.out.println(noneElementsContainSpaces_6(list));
         System.out.println(anyElementWhoseLengthSix_7(list));
-        System.out.println(alphabeticalList_8(null));
+        System.out.println(alphabeticalList_8(list));
+        System.out.println(sortReverseAlphabetically_8(list));
     }
 }
 /*
