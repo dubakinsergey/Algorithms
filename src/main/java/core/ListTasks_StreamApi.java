@@ -281,6 +281,33 @@ list.stream()
                 .collect(Collectors.toList());
     }
 
+    //    Задача 9: Отсортировать список по длине строки
+    public static List<String> sortListByStringLength_9(List<String> list) {
+
+        if (list == null) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(String::length)) // компаратор по длине строки
+                .collect(Collectors.toList());
+    }
+
+    //       Задача 9: Сортировка по длине, потом по алфавиту:
+    public static List<String> sortByLengthThenAlphabetically_9(List<String> list) {
+
+        if (list == null) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(String::length)       // сначала по длине, потом по алфавиту
+                        .thenComparing(Comparator.naturalOrder())) // при равной длине - сортировка по алфавиту  ---> .thenComparing(String::compareTo) // эквивалентно
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -303,12 +330,12 @@ list.stream()
         System.out.println(anyElementWhoseLengthSix_7(list));
         System.out.println(alphabeticalList_8(list));
         System.out.println(sortReverseAlphabetically_8(list));
+        System.out.println(sortListByStringLength_9(list));
+        System.out.println(sortByLengthThenAlphabetically_9(list));
     }
 }
 /*
 Сортировка и агрегирующие операции
-
-Задача 9: Отсортировать список по длине строки
 
 Задача 10: Найти самый длинный элемент
 
