@@ -308,6 +308,33 @@ list.stream()
                 .collect(Collectors.toList());
     }
 
+    //    Задача 10: Найти самый длинный элемент
+    public static String longestElement_10(List<String>list){
+
+        if (list == null || list.isEmpty()) {
+            return "not found";
+        }
+
+       Optional<String> listReversed = list.stream()
+                .filter(Objects::nonNull)
+               .sorted(Comparator.comparing(String::length).reversed())
+               .findFirst(); // отсортируй в обратном порядке и возьми первый
+
+      return listReversed.orElse("not found");
+    }
+
+    //    Задача 10: Найти самый длинный элемент (Через .max())
+    public static String longestElement_Two_10(List<String>list){
+
+        if (list == null || list.isEmpty()) {
+            return "not found";
+        }
+
+       return list.stream()
+                .filter(Objects::nonNull)
+                .max(Comparator.comparing(String::length))
+                .orElse("not found");
+    }
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -332,12 +359,12 @@ list.stream()
         System.out.println(sortReverseAlphabetically_8(list));
         System.out.println(sortListByStringLength_9(list));
         System.out.println(sortByLengthThenAlphabetically_9(list));
+        System.out.println(longestElement_10(list));
+        System.out.println(longestElement_Two_10(list));
     }
 }
 /*
 Сортировка и агрегирующие операции
-
-Задача 10: Найти самый длинный элемент
 
 Задача 11: Найти общее количество символов во всех строках
 
