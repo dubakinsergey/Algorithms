@@ -348,6 +348,28 @@ list.stream()
               .mapToInt(String::length) // IntStream (примитивы)
               .sum();                   // работа с примитивами
     }
+
+//    Задача 12: Объединить все элементы в одну строку через запятую
+/*
+               Важные особенности:
+        Collectors.joining() vs String.join():
+
+// Collectors.joining() - в Stream API, можно фильтровать/преобразовывать
+stream.collect(Collectors.joining(", "))
+
+// String.join() - проще, но не работает с null элементами
+String.join(", ", list) // ❌ NPE если есть null
+*/
+     public static String joinAllElementsWithComma_12(List<String>list){
+
+         if (list == null || list.isEmpty()) {
+             return "not found";
+         }
+
+       return list.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.joining(", ")); // объединяет элементы через разделитель
+     }
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -374,10 +396,9 @@ list.stream()
         System.out.println(sortByLengthThenAlphabetically_9(list));
         System.out.println(longestElement_10(list));
         System.out.println(longestElement_Two_10(list));
+        System.out.println(joinAllElementsWithComma_12(list));
     }
 }
 /*
-Сортировка и агрегирующие операции
 
-Задача 12: Объединить все элементы в одну строку через запятую
 */
