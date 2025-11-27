@@ -335,6 +335,19 @@ list.stream()
                 .max(Comparator.comparing(String::length))
                 .orElse("not found");
     }
+
+     //    Задача 11: Найти общее количество символов во всех строках
+    public static Integer totalNumberCharactersInAllLines_11(List<String>list){
+
+        if (list == null || list.isEmpty()) {
+            return 0;
+        }
+
+      return list.stream()
+                .filter(Objects::nonNull)
+              .mapToInt(String::length) // IntStream (примитивы)
+              .sum();                   // работа с примитивами
+    }
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -365,8 +378,6 @@ list.stream()
 }
 /*
 Сортировка и агрегирующие операции
-
-Задача 11: Найти общее количество символов во всех строках
 
 Задача 12: Объединить все элементы в одну строку через запятую
 */

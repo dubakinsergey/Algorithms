@@ -1,0 +1,63 @@
+🏗️ Создание IntStream:
+
+IntStream.range(1, 10)           // 1,2,3,4,5,6,7,8,9
+IntStream.rangeClosed(1, 10)     // 1,2,3,4,5,6,7,8,9,10
+IntStream.of(1, 2, 3, 4)         // из значений
+list.stream().mapToInt(String::length) // из коллекции
+
+🔧 Промежуточные операции:
+
+.filter(n -> n > 5)              // фильтрация
+.map(n -> n * 2)                 // преобразование
+.distinct()                      // уникальные
+.sorted()                        // сортировка
+.limit(5)                        // первые 5
+.skip(2)                         // пропустить 2
+
+🎯 Терминальные операции:
+
+.sum()                           // сумма (чаще всего!)
+.average()                       // среднее (OptionalDouble)
+.min()                           // минимум (OptionalInt)
+.max()                           // максимум (OptionalInt)
+.count()                         // количество
+.forEach(System.out::println)    // действие для каждого
+.toArray()                       // в массив int[]
+
+📊 Статистика:
+
+IntSummaryStatistics stats = stream.summaryStatistics();
+stats.getSum()                   // общая сумма
+stats.getAverage()               // среднее
+stats.getCount()                 // количество
+stats.getMin()                   // минимум
+stats.getMax()                   // максимум
+
+Специализированные операции:
+
+// Только в IntStream:
+.sum()                           // суммирование
+.average()                       // среднее значение
+
+🎯 Практические примеры:
+
+Сумма длин строк:
+int totalChars = list.stream()
+                    .mapToInt(String::length)
+                    .sum(); // ✅ эффективно
+
+Статистика по длинам:
+IntSummaryStatistics stats = list.stream()
+                                .mapToInt(String::length)
+                                .summaryStatistics();
+// stats: sum, average, min, max, count
+
+
+Фильтрация и преобразование:
+int[] result = list.stream()
+                  .mapToInt(String::length)
+                  .filter(len -> len > 3)
+                  .map(len -> len * 2)
+                  .toArray();
+
+IntStream - лучший выбор для работы с числовыми данными!
