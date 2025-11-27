@@ -1,0 +1,40 @@
+📏 Информация:
+ str.length()                 // длина строки
+ str.charAt(0)               // символ по индексу
+ str.isEmpty()               // пустая ли?
+ str.isBlank()               // только пробелы? (Java 11+)
+
+ 🔍 Поиск и проверки:
+ str.contains("text")        // содержит подстроку?
+ str.startsWith("pre")       // начинается с?
+ str.endsWith("suf")         // заканчивается на?
+ str.indexOf("text")         // индекс первого вхождения
+
+ 🔄 Изменение регистра:
+ str.toUpperCase()           // в верхний регистр
+ str.toLowerCase()           // в нижний регистр
+
+ ✂️ Подстроки и обрезка:
+ str.substring(1, 5)         // подстрока (с 1 до 4)
+ str.trim()                  // убрать пробелы по краям
+ str.strip()                 // modern trim (Java 11+)
+ str.replace("old", "new")   // замена всех вхождений
+
+ 🎯 В Stream API часто используется:
+ String::length              // method reference для длины
+ String::toUpperCase         // для преобразования регистра
+ s -> s.startsWith("A")      // lambda для проверки начала
+
+ 💡 ЗОЛОТЫЕ КОМБИНАЦИИ:
+ Для String в Stream:
+ list.stream()
+     .filter(Objects::nonNull)
+     .map(String::toUpperCase)
+     .filter(s -> s.length() > 3)
+     .sorted()
+     .collect(Collectors.toList())
+
+С Comparator в Stream:
+list.stream()
+    .sorted(Comparator.comparing(String::length)
+             .thenComparing(Comparator.naturalOrder()))

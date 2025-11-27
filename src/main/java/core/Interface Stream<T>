@@ -1,0 +1,36 @@
+🏗️ Создание Stream:
+list.stream()               // из коллекции
+Stream.of("a", "b", "c")    // из элементов
+
+🔧 ПРОМЕЖУТОЧНЫЕ (lazy):
+.filter(Predicate)          // фильтрация
+.map(Function)              // преобразование
+.sorted()                   // сортировка
+.sorted(Comparator)         // сортировка с компаратором
+.distinct()                 // уникальные элементы
+.limit(n)                   // первые n элементов
+
+🎯 ТЕРМИНАЛЬНЫЕ (eager):
+.collect(Collectors.toList()) // собрать в список
+.forEach(Consumer)           // действие для каждого
+.count()                     // количество
+.anyMatch(Predicate)         // ХОТЯ БЫ ОДИН
+.allMatch(Predicate)         // ВСЕ
+.noneMatch(Predicate)        // НИ ОДИН
+.findFirst()                 // первый элемент
+.findAny()                   // любой элемент
+.max(Comparator)             // максимальный
+.min(Comparator)             // минимальный
+
+💡 Популярные комбинации:
+// Фильтрация + преобразование
+list.stream()
+    .filter(Objects::nonNull)
+    .map(String::toUpperCase)
+    .collect(Collectors.toList())
+
+// Поиск с default значением
+list.stream()
+    .filter(s -> s.length() > 5)
+    .findFirst()
+    .orElse("not found")

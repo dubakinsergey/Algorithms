@@ -1,0 +1,28 @@
+🎯 Создание компараторов:
+Comparator.naturalOrder()          // естественный порядок
+Comparator.reverseOrder()          // обратный порядок
+Comparator.comparing(String::length) // по длине строки
+Comparator.comparing(Person::getName) // по полю объекта
+
+🔗 Цепочка компараторов:
+// Множественная сортировка
+Comparator.comparing(Person::getLastName)
+          .thenComparing(Person::getFirstName)
+
+🔄 Обратный порядок:
+Comparator.comparing(String::length).reversed()
+
+🛡️ Null-safe компараторы:
+Comparator.nullsFirst(Comparator)  // null в начало
+Comparator.nullsLast(Comparator)   // null в конец
+
+🎯 В Stream API:
+// Сортировка по длине
+.sorted(Comparator.comparing(String::length))
+
+// Сортировка по длине + алфавиту
+.sorted(Comparator.comparing(String::length)
+         .thenComparing(Comparator.naturalOrder()))
+
+// Обратная сортировка
+.sorted(Comparator.reverseOrder())
