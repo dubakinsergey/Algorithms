@@ -385,6 +385,7 @@ String.join(", ", list) // ❌ NPE если есть null
 
     //    Задача 14: Сгруппировать элементы по их длине
     public static Map<Integer, List<String>> groupByLength_14(List<String> list) {
+
         if (list == null || list.isEmpty()) {
             return new HashMap<>();
         }
@@ -394,6 +395,20 @@ String.join(", ", list) // ❌ NPE если есть null
                 .collect(Collectors.groupingBy(String::length)); // группировка по длине строки
     }
 
+//    Задача 15: Подсчитать частоту каждого элемента
+    public static Map<String, Long> frequencyEachElement_15(List<String> list){
+
+        if (list == null) {
+            return new HashMap<>(); // защита от NPE
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.groupingBy(
+                        el -> el,    //ключ = сам элемент
+                        Collectors.counting() // значение = количество вхождений
+                ));
+    }
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -423,15 +438,10 @@ String.join(", ", list) // ❌ NPE если есть null
         System.out.println(joinAllElementsWithComma_12(list));
         System.out.println(noDuplicates_13(list));
         System.out.println(groupByLength_14(list));
+        System.out.println(frequencyEachElement_15(list));
     }
 }
 /*
-🗂️ Работа с дубликатами и группировкой
-
-Задача 14: Сгруппировать элементы по их длине
-
-Задача 15: Подсчитать частоту каждого элемента
-
 🧩 Комбинированные задачи
 Задача 16: Получить список уникальных элементов, отсортированных по алфавиту, в верхнем регистре
 
