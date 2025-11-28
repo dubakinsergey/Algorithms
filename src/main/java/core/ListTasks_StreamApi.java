@@ -309,47 +309,47 @@ list.stream()
     }
 
     //    Задача 10: Найти самый длинный элемент
-    public static String longestElement_10(List<String>list){
+    public static String longestElement_10(List<String> list) {
 
         if (list == null || list.isEmpty()) {
             return "not found";
         }
 
-       Optional<String> listReversed = list.stream()
+        Optional<String> listReversed = list.stream()
                 .filter(Objects::nonNull)
-               .sorted(Comparator.comparing(String::length).reversed())
-               .findFirst(); // отсортируй в обратном порядке и возьми первый
+                .sorted(Comparator.comparing(String::length).reversed())
+                .findFirst(); // отсортируй в обратном порядке и возьми первый
 
-      return listReversed.orElse("not found");
+        return listReversed.orElse("not found");
     }
 
     //    Задача 10: Найти самый длинный элемент (Через .max())
-    public static String longestElement_Two_10(List<String>list){
+    public static String longestElement_Two_10(List<String> list) {
 
         if (list == null || list.isEmpty()) {
             return "not found";
         }
 
-       return list.stream()
+        return list.stream()
                 .filter(Objects::nonNull)
                 .max(Comparator.comparing(String::length))
                 .orElse("not found");
     }
 
-     //    Задача 11: Найти общее количество символов во всех строках
-    public static Integer totalNumberCharactersInAllLines_11(List<String>list){
+    //    Задача 11: Найти общее количество символов во всех строках
+    public static Integer totalNumberCharactersInAllLines_11(List<String> list) {
 
         if (list == null || list.isEmpty()) {
             return 0;
         }
 
-      return list.stream()
+        return list.stream()
                 .filter(Objects::nonNull)
-              .mapToInt(String::length) // IntStream (примитивы)
-              .sum();                   // работа с примитивами
+                .mapToInt(String::length) // IntStream (примитивы)
+                .sum();                   // работа с примитивами
     }
 
-//    Задача 12: Объединить все элементы в одну строку через запятую
+    //    Задача 12: Объединить все элементы в одну строку через запятую
 /*
                Важные особенности:
         Collectors.joining() vs String.join():
@@ -360,16 +360,29 @@ stream.collect(Collectors.joining(", "))
 // String.join() - проще, но не работает с null элементами
 String.join(", ", list) // ❌ NPE если есть null
 */
-     public static String joinAllElementsWithComma_12(List<String>list){
+    public static String joinAllElementsWithComma_12(List<String> list) {
 
-         if (list == null || list.isEmpty()) {
-             return "not found";
-         }
+        if (list == null || list.isEmpty()) {
+            return "not found";
+        }
 
-       return list.stream()
+        return list.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining(", ")); // объединяет элементы через разделитель
-     }
+    }
+
+    //    Задача 13: Удалить дубликаты
+    public static List<String> noDuplicates_13(List<String> list) {
+
+        if(list == null || list.isEmpty())
+            return new  ArrayList<>();
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -397,8 +410,24 @@ String.join(", ", list) // ❌ NPE если есть null
         System.out.println(longestElement_10(list));
         System.out.println(longestElement_Two_10(list));
         System.out.println(joinAllElementsWithComma_12(list));
+        System.out.println(noDuplicates_13(list));
     }
 }
 /*
+🗂️ Работа с дубликатами и группировкой
 
+Задача 14: Сгруппировать элементы по их длине
+
+Задача 15: Подсчитать частоту каждого элемента
+
+🧩 Комбинированные задачи
+Задача 16: Получить список уникальных элементов, отсортированных по алфавиту, в верхнем регистре
+
+Задача 17: Найти три самых коротких слова
+
+Задача 18: Получить Map, где ключ - первая буква, значение - список слов, начинающихся на эту букву
+
+Задача 19: Найти все элементы, которые содержат букву 'a' и имеют длину больше 4
+
+Задача 20: Создать Map, где ключ - слово, значение - его длина
 */
