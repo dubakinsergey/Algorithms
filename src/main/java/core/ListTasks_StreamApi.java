@@ -374,13 +374,24 @@ String.join(", ", list) // ❌ NPE если есть null
     //    Задача 13: Удалить дубликаты
     public static List<String> noDuplicates_13(List<String> list) {
 
-        if(list == null || list.isEmpty())
-            return new  ArrayList<>();
+        if (list == null || list.isEmpty())
+            return new ArrayList<>();
 
         return list.stream()
                 .filter(Objects::nonNull)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    //    Задача 14: Сгруппировать элементы по их длине
+    public static Map<Integer, List<String>> groupByLength_14(List<String> list) {
+        if (list == null || list.isEmpty()) {
+            return new HashMap<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.groupingBy(String::length)); // группировка по длине строки
     }
 
     public static void main(String[] args) {
@@ -411,6 +422,7 @@ String.join(", ", list) // ❌ NPE если есть null
         System.out.println(longestElement_Two_10(list));
         System.out.println(joinAllElementsWithComma_12(list));
         System.out.println(noDuplicates_13(list));
+        System.out.println(groupByLength_14(list));
     }
 }
 /*
