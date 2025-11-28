@@ -1,0 +1,57 @@
+🎯 Сбор в коллекции:
+Collectors.toList()                      // в ArrayList
+Collectors.toSet()                       // в HashSet
+Collectors.toCollection(ArrayList::new)  // в конкретную коллекцию
+Collectors.toMap(keyMapper, valueMapper) // в Map
+
+📊 Группировка и агрегация:
+// Группировка
+Collectors.groupingBy(classifier)        // группировка по ключу
+Collectors.groupingBy(classifier, downstream) // с агрегацией
+Collectors.partitioningBy(predicate)     // разделение на true/false
+
+// Агрегация
+Collectors.counting()                    // подсчет элементов
+Collectors.summingInt(ToIntFunction)     // суммирование
+Collectors.averagingDouble(ToDoubleFunction) // среднее значение
+Collectors.summarizingInt(ToIntFunction) // вся статистика
+
+🔄 Объединение строк:
+Collectors.joining()                     // конкатенация
+Collectors.joining(delimiter)            // с разделителем
+Collectors.joining(delimiter, prefix, suffix) // с префиксом/суффиксом
+
+🎪 Комбинированные коллекторы:
+Collectors.mapping(mapper, downstream)   // преобразование + сбор
+Collectors.filtering(predicate, downstream) // фильтрация + сбор
+Collectors.flatMapping(mapper, downstream) // flatMap + сбор
+
+📈 Статистика:
+Collectors.summarizingInt(ToIntFunction) // IntSummaryStatistics
+// getCount(), getSum(), getAverage(), getMin(), getMax()
+
+
+💡 ПРАКТИЧЕСКИЕ ПРИМЕРЫ:
+
+Группировка с подсчетом:
+Map<Integer, Long> countByLength = list.stream()
+    .collect(Collectors.groupingBy(
+        String::length,
+        Collectors.counting()
+    ));
+
+Группировка с преобразованием:
+Map<Integer, List<Integer>> lengthAndDouble = list.stream()
+    .collect(Collectors.groupingBy(
+        String::length,
+        Collectors.mapping(
+            s -> s.length() * 2,
+            Collectors.toList()
+        )
+    ));
+
+Разделение с фильтрацией:
+Map<Boolean, List<String>> byLength = list.stream()
+    .collect(Collectors.partitioningBy(
+        s -> s.length() > 5
+    ));
