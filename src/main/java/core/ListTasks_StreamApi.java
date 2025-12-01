@@ -395,8 +395,8 @@ String.join(", ", list) // ❌ NPE если есть null
                 .collect(Collectors.groupingBy(String::length)); // группировка по длине строки
     }
 
-//    Задача 15: Подсчитать частоту каждого элемента
-    public static Map<String, Long> frequencyEachElement_15(List<String> list){
+    //    Задача 15: Подсчитать частоту каждого элемента
+    public static Map<String, Long> frequencyEachElement_15(List<String> list) {
 
         if (list == null) {
             return new HashMap<>(); // защита от NPE
@@ -409,6 +409,22 @@ String.join(", ", list) // ❌ NPE если есть null
                         Collectors.counting() // значение = количество вхождений
                 ));
     }
+
+    //    Задача 16: Получить список уникальных элементов, отсортированных по алфавиту, в верхнем регистре
+    public static List<String> uniqueElementsSortedAlphabeticallyUppercase_16(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)     // 1. Убрать null
+                .map(String::toUpperCase)     // 2. Нормализовать регистр
+                .distinct()                   // 3. Удалить дубликаты (после нормализации!)
+                .sorted()                     // 4. Отсортировать уникальные элементы
+                .collect(Collectors.toList()); // 5. Собрать результат
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -421,24 +437,25 @@ String.join(", ", list) // ❌ NPE если есть null
                 "programming", "collection", "framework", "development"
         );
 
-        System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
-        System.out.println(elementToUpperCase_2(list));
-        System.out.println(firstElementStartsWithB_3(list));
-        System.out.println(createListOfWordLengths_4(list));
-        System.out.println(elementsBeginWithLowercaseLetter_5(list));
-        System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
-        System.out.println(noneElementsContainSpaces_6(list));
-        System.out.println(anyElementWhoseLengthSix_7(list));
-        System.out.println(alphabeticalList_8(list));
-        System.out.println(sortReverseAlphabetically_8(list));
-        System.out.println(sortListByStringLength_9(list));
-        System.out.println(sortByLengthThenAlphabetically_9(list));
-        System.out.println(longestElement_10(list));
-        System.out.println(longestElement_Two_10(list));
-        System.out.println(joinAllElementsWithComma_12(list));
-        System.out.println(noDuplicates_13(list));
-        System.out.println(groupByLength_14(list));
-        System.out.println(frequencyEachElement_15(list));
+//        System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
+//        System.out.println(elementToUpperCase_2(list));
+//        System.out.println(firstElementStartsWithB_3(list));
+//        System.out.println(createListOfWordLengths_4(list));
+//        System.out.println(elementsBeginWithLowercaseLetter_5(list));
+//        System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
+//        System.out.println(noneElementsContainSpaces_6(list));
+//        System.out.println(anyElementWhoseLengthSix_7(list));
+//        System.out.println(alphabeticalList_8(list));
+//        System.out.println(sortReverseAlphabetically_8(list));
+//        System.out.println(sortListByStringLength_9(list));
+//        System.out.println(sortByLengthThenAlphabetically_9(list));
+//        System.out.println(longestElement_10(list));
+//        System.out.println(longestElement_Two_10(list));
+//        System.out.println(joinAllElementsWithComma_12(list));
+//        System.out.println(noDuplicates_13(list));
+//        System.out.println(groupByLength_14(list));
+//        System.out.println(frequencyEachElement_15(list));
+        System.out.println(uniqueElementsSortedAlphabeticallyUppercase_16(list));
     }
 }
 /*
