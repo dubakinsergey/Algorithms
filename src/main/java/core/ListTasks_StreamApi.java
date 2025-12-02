@@ -425,6 +425,27 @@ String.join(", ", list) // ❌ NPE если есть null
                 .collect(Collectors.toList()); // 5. Собрать результат
     }
 
+    //    Задача 17: Найти три самых коротких слова
+/*
+stream.limit(n) // Берёт ПЕРВЫЕ n элементов
+
+stream.skip(n) // Пропускает ПЕРВЫЕ n элементов, берёт остальные
+*/
+    public static List<String> findThreeShortestWords_17(List<String> list) {
+
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(el -> !el.isEmpty()) //пустые строки не считаются словами
+                .distinct()  //  только уникальные слова
+                .sorted(Comparator.comparingInt(String::length))
+                .limit(3)
+                .collect(Collectors.toList());
+    }
+
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList(
@@ -437,32 +458,30 @@ String.join(", ", list) // ❌ NPE если есть null
                 "programming", "collection", "framework", "development"
         );
 
-//        System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
-//        System.out.println(elementToUpperCase_2(list));
-//        System.out.println(firstElementStartsWithB_3(list));
-//        System.out.println(createListOfWordLengths_4(list));
-//        System.out.println(elementsBeginWithLowercaseLetter_5(list));
-//        System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
-//        System.out.println(noneElementsContainSpaces_6(list));
-//        System.out.println(anyElementWhoseLengthSix_7(list));
-//        System.out.println(alphabeticalList_8(list));
-//        System.out.println(sortReverseAlphabetically_8(list));
-//        System.out.println(sortListByStringLength_9(list));
-//        System.out.println(sortByLengthThenAlphabetically_9(list));
-//        System.out.println(longestElement_10(list));
-//        System.out.println(longestElement_Two_10(list));
-//        System.out.println(joinAllElementsWithComma_12(list));
-//        System.out.println(noDuplicates_13(list));
-//        System.out.println(groupByLength_14(list));
-//        System.out.println(frequencyEachElement_15(list));
+        System.out.println(filterElementLengthGreaterThan5Symbols_1(list));
+        System.out.println(elementToUpperCase_2(list));
+        System.out.println(firstElementStartsWithB_3(list));
+        System.out.println(createListOfWordLengths_4(list));
+        System.out.println(elementsBeginWithLowercaseLetter_5(list));
+        System.out.println(elementsBeginWithLowercaseLetter_Second_5(list));
+        System.out.println(noneElementsContainSpaces_6(list));
+        System.out.println(anyElementWhoseLengthSix_7(list));
+        System.out.println(alphabeticalList_8(list));
+        System.out.println(sortReverseAlphabetically_8(list));
+        System.out.println(sortListByStringLength_9(list));
+        System.out.println(sortByLengthThenAlphabetically_9(list));
+        System.out.println(longestElement_10(list));
+        System.out.println(longestElement_Two_10(list));
+        System.out.println(joinAllElementsWithComma_12(list));
+        System.out.println(noDuplicates_13(list));
+        System.out.println(groupByLength_14(list));
+        System.out.println(frequencyEachElement_15(list));
         System.out.println(uniqueElementsSortedAlphabeticallyUppercase_16(list));
+        System.out.println(findThreeShortestWords_17(list));
     }
 }
 /*
 🧩 Комбинированные задачи
-Задача 16: Получить список уникальных элементов, отсортированных по алфавиту, в верхнем регистре
-
-Задача 17: Найти три самых коротких слова
 
 Задача 18: Получить Map, где ключ - первая буква, значение - список слов, начинающихся на эту букву
 
