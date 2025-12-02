@@ -442,7 +442,9 @@ stream.skip(n) // Пропускает ПЕРВЫЕ n элементов, бер
                 .filter(el -> !el.isEmpty()) //пустые строки не считаются словами
                 .distinct()  //  только уникальные слова
                 .sorted(Comparator.comparingInt(String::length))
-                .limit(3)
+                .limit(3)  // Если элементов меньше 3 → вернет все что есть
+                                   // Если элементов 0 → вернет пустой список
+                                   // Никогда не бросает исключений
                 .collect(Collectors.toList());
     }
 
